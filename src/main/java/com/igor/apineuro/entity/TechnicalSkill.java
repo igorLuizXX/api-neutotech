@@ -9,7 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class TechicalSkill {
+public class TechnicalSkill {
 
 	@Id
 	@GeneratedValue
@@ -24,7 +24,7 @@ public class TechicalSkill {
 	private Employee employee;
 	
 
-	public TechicalSkill() {
+	public TechnicalSkill() {
 		super();
 	}
 

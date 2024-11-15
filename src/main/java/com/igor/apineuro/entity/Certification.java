@@ -20,12 +20,12 @@ public class Certification {
 	private String name;
 	private String description;
 	private String institution;
-	private LocalDate starDate;
+	private LocalDate startDate;
 	private LocalDate expirationDate;
 
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "employee_id")
-	public Employee employee;
+	private Employee employee;
 	
 
 	public Certification() {
@@ -65,11 +65,11 @@ public class Certification {
 	}
 
 	public LocalDate getStarDate() {
-		return starDate;
+		return startDate;
 	}
 
 	public void setStarDate(LocalDate starDate) {
-		this.starDate = starDate;
+		this.startDate = starDate;
 	}
 
 	public LocalDate getExpirationDate() {
