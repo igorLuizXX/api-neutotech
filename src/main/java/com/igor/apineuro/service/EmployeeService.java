@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.igor.apineuro.dto.EmployeeDTO;
 import com.igor.apineuro.entity.Employee;
 import com.igor.apineuro.repository.EmployeeRepository;
 
@@ -17,17 +18,17 @@ public class EmployeeService {
 		this.employeeRepository = employeeRepository;
 	}
 	
-	public List<Employee> findAll() {
+	public List<EmployeeDTO> findAll() {
 		return employeeRepository.findAll(); 
 	}
 	
-	public ResponseEntity<Employee> getEmployeeById(long id){
+	public ResponseEntity<EmployeeDTO> getEmployeeById(long id){
 		return employeeRepository.findById(id)
 				.map(employee -> ResponseEntity.ok(employee))
 				.orElse(ResponseEntity.notFound().build());
 	}
 	
-	public Employee createEmployee(Employee employee) {
+	public EmployeeDTO createEmployee(EmployeeDTO employee) {
 		return employeeRepository.save(employee); 
 	}
 	
@@ -35,7 +36,7 @@ public class EmployeeService {
 		employeeRepository.deleteById (id); 
 	}
 
-	public ResponseEntity<Employee> updateEmployee(Long id, Employee employee) {
+	public ResponseEntity<EmployeeDTO> updateEmployee(Long id, EmployeeDTO employee) {
 		return employeeRepository.findById(id).map(employeeToSave -> {
 			employeeToSave.setName(employee.getName());
 			employeeToSave.setPhone(employee.getPhone()); 
@@ -45,5 +46,6 @@ public class EmployeeService {
 			return ResponseEntity.ok(employeeRepository.save(employeeToSave)); 
 		}).orElse(ResponseEntity.notFound().build());
 	}
+	
 	
 }

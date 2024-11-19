@@ -1,25 +1,59 @@
 package com.igor.apineuro.entity;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Employee {
 
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private Long id; 
-	
-	private String name; 
-	private String phone; 
-	private String email; 
-	private String experienceTime; 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	private String name;
+	private String phone;
+	private String email;
+	private String experienceTime;
 	private String linkedinUrl;
-	
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "employee")
+	private List<Certification> certifications;
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "employee")
+	private List<TechnicalSkill> technicalSkills;
+
 	public Employee() {
 	}
+	
+
+	public List<Certification> getCertifications() {
+		return certifications;
+	}
+
+	public void setCertifications(List<Certification> certifications) {
+		this.certifications = certifications;
+	}
+
+
+
+	public List<TechnicalSkill> getTechnicalSkills() {
+		return technicalSkills;
+	}
+
+
+
+	public void setTechnicalSkills(List<TechnicalSkill> technicalSkills) {
+		this.technicalSkills = technicalSkills;
+	}
+
+
 
 	public Long getId() {
 		return id;
@@ -67,7 +101,6 @@ public class Employee {
 
 	public void setLinkedinUrl(String linkedinUrl) {
 		this.linkedinUrl = linkedinUrl;
-	} 
-	
-	
+	}
+
 }

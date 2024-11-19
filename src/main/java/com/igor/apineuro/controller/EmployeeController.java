@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.igor.apineuro.dto.EmployeeDTO;
 import com.igor.apineuro.entity.Employee;
 import com.igor.apineuro.service.EmployeeService;
 
@@ -25,18 +26,18 @@ public class EmployeeController {
 	}
 
 	@GetMapping
-	public List<Employee> getALLEmployee() {
+	public List<EmployeeDTO> getALLEmployee() {
 		return employeeService.findAll(); 
 	}
 	@GetMapping ("/{id}")
-	public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id){
+	public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable Long id){
 		return employeeService.getEmployeeById(id);
 		
 	}
 	
 	@PostMapping
-	public Employee createEmployee(@RequestBody Employee employee) {
-		return employeeService.createEmployee(employee); 
+	public EmployeeDTO createEmployee(@RequestBody EmployeeDTO employeeDTO) {
+		return employeeService.createEmployee(employeeDTO); 
 	}
 	
     @DeleteMapping ("/{id}")

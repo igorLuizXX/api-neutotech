@@ -1,43 +1,38 @@
-package com.igor.apineuro.entity;
+package com.igor.apineuro.dto;
 
 import java.time.LocalDate;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import com.igor.apineuro.entity.Certification;
 
-@Entity
-public class Certification {
-	
-	@Id
-	@GeneratedValue
-	private Long id;
-	
+public class CertificationDTO {
+
 	private String name;
 	private String description;
 	private String institution;
 	private LocalDate startDate;
 	private LocalDate expirationDate;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "employee_id")
-	private Employee employee;
-	
+	public static CertificationDTO toDTO(Certification certification) {
 
-	public Certification() {
-		super();
+		CertificationDTO dto = new CertificationDTO();
+		dto.setName(certification.getName());
+		dto.setDescription(certification.getDescription());
+		dto.setInstitution(certification.getInstitution());
+		dto.setStartDate(certification.getStartDate());
+		dto.setExpirationDate(certification.getExpirationDate());
+		return dto;
 	}
 
-	public Long getId() {
-		return id;
-	}
+	public Certification toEntity() {
 
-	public void setId(Long id) {
-		this.id = id;
+		Certification certification = new Certification();
+		certification.setName(this.getName());
+		certification.setDescription(this.getDescription());
+		certification.setInstitution(this.getInstitution());
+		certification.setStartDate(this.getStartDate());
+		certification.setExpirationDate(this.getExpirationDate());
+
+		return certification;
 	}
 
 	public String getName() {
@@ -80,14 +75,4 @@ public class Certification {
 		this.expirationDate = expirationDate;
 	}
 
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
-	
-	
 }
