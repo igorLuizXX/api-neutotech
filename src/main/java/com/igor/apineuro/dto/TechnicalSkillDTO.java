@@ -1,5 +1,8 @@
 package com.igor.apineuro.dto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.igor.apineuro.entity.TechnicalSkill;
 
 public class TechnicalSkillDTO {
@@ -27,6 +30,10 @@ public class TechnicalSkillDTO {
 		technicalSkill.setLevel(this.getLevel());
 		return technicalSkill;
 	}
+	
+	  public static List<TechnicalSkill> toEntityList(List<TechnicalSkillDTO> technicalSkills) {
+	        return technicalSkills.stream().map(TechnicalSkillDTO::toEntity).collect(Collectors.toList());
+	    }
 	
 	
 	

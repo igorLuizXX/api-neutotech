@@ -18,7 +18,7 @@ public class EmployeeDTO {
 	private List<CertificationDTO> certifications = new ArrayList<>();
 	private List<TechnicalSkillDTO> technicalSkills = new ArrayList<>();
 	
-	public static EmployeeDTO toDTO(Employee employee) {
+	public static EmployeeDTO fromEntity(Employee employee) {
 		EmployeeDTO dto = new EmployeeDTO();
 		dto.setName(employee.getName());
 		dto.setEmail(employee.getEmail());
@@ -43,6 +43,8 @@ public class EmployeeDTO {
 		employee.setName(this.getName());
 		employee.setEmail(this.getEmail());
 		employee.setPhone(this.getPhone());
+		employee.setCertifications(CertificationDTO.toEntityList(this.getCertifications()));
+		employee.setTechnicalSkills(TechnicalSkillDTO.toEntityList(this.getTechnicalSkills()));
 		employee.setExperienceTime(this.getExperienceTime());
 		employee.setLinkedinUrl(this.getLinkedinUrl());
 		return employee;

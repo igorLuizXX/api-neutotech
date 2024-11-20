@@ -1,6 +1,8 @@
 package com.igor.apineuro.dto;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.igor.apineuro.entity.Certification;
 
@@ -22,9 +24,12 @@ public class CertificationDTO {
 		dto.setExpirationDate(certification.getExpirationDate());
 		return dto;
 	}
+	
+	public static List<Certification> toEntityList(List<CertificationDTO> certifications) {
+        return certifications.stream().map(CertificationDTO::toEntity).collect(Collectors.toList());
+    }
 
 	public Certification toEntity() {
-
 		Certification certification = new Certification();
 		certification.setName(this.getName());
 		certification.setDescription(this.getDescription());
